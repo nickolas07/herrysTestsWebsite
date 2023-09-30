@@ -40,17 +40,17 @@ def erstellen_by_jahrgang(request, jahrgang):
 
 def test_erstellen(test_name, klasse, kurs, lehrer):
     test_name = test_name.replace(' ', '_')
-    file_path = '/herrys_tests/tests/' + test_name.replace("_-_Lsg", "") + '.py'
+    file_path = '/herrys_tests_github/herrys_tests/tests/' + test_name.replace("_-_Lsg", "") + '.py'
     os.system(f'python {file_path} {klasse} {kurs} {lehrer}')
 
 
 def view_pdf(response, test_name):
-    file_path = f'/herrys_tests/{test_name}.pdf'
+    file_path = f'/herrys_tests_github/herrys_tests/{test_name}.pdf'
     return FileResponse(open(file_path, 'rb'), content_type='application/pdf')
 
 
 def download_pdf(response, test_name):
-    file_path = f'/herrys_tests/{test_name}.pdf'
+    file_path = f'/herrys_tests_github/herrys_tests/{test_name}.pdf'
     with open(file_path, 'rb') as fh:
         response = HttpResponse(fh.read(), content_type="application/ms-excel")
         response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path).replace('_', ' ')
