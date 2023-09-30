@@ -6,8 +6,8 @@ def home(response):
     return render(response, 'home/home.html')
 
 
-def ueber(response):
-    return render(response, 'home/ueber.html')
+def über(response):
+    return render(response, 'home/über.html')
 
 
 def impressum(response):
