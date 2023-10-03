@@ -1,11 +1,48 @@
 {% extends 'home/base.html' %}
 {% block content %}
+    <style>
+    .container-2 {
+        margin-left: 2%;
+        margin-top: 1%;
+    }
+    .Lehrer, .Schüler {
+        font-family: 'Raleway', sans-serif;
+        font-size: 18px;
+    }
+    </style>
     <div class="container">
-        <h1>Roadmap</h1>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">- Anleitung, wie es verwendet wird? (evtl. Video)</li>
-          <li class="list-group-item">- Aufgabenauswahl</li>
-          <li class="list-group-item">- Seriennummer in Datenbank um vorherige Tests einzusehen (Seriennummer vlt. aus den Zahlen im Test)</li>
-        </ul>
+        <h1><b>Wie erstellt man sich einen Test?</b></h1>
+        <div class="container-2">
+            <h2>Als Lehrer</h2>
+            <ol class="Lehrer">
+                <li>Sie gehen oben auf <i>"Erstellen"</i> und dann auf <i>"Lehrer"</i></li>
+                <li>Jetzt können Sie unter <i>"Filter"</i> nach Jahrgängen sortieren</li>
+                <li>Wenn Sie sich jetzt für einen Test entschieden hat, müssen Sie die Klasse, den Kurs und den Namen der in der Überschrift stehen soll angeben</li>
+                <li>Jetzt können Sie auf <i>"Erstellen"</i> drücken und es wird sich ein neuer Tab öffnen, es wird eine kurze Zeit laden, da der Test erstellt wird</li>
+                <li>Fertig geladen, sehen Sie eine Vorschau von dem Test, jetzt können Sie sich diesen anschauen</li>
+                <li>Eine Möglichkeit einen Test herunterzuladen ist, indem Sie:
+                    <ol>
+                        <li>Wieder auf den vorherigen Tab wechseln</li>
+                        <li>Auf den kleinen Pfeil nach unten neben <i>"Erstellen"</i> drücken</li>
+                        <li>Jetzt können Sie sich den Test nochmal anschauen, ihn herunterladen, sowie die Lösung anschauen und herunterladen</li>
+                    </ol>
+                </li>
+            </ol>
+            <br>
+            <h2>Als Schüler</h2>
+            <ol class="Schüler">
+                <li>Du gehst oben auf <i>"Erstellen"</i> und dann auf <i>"Schüler"</i></li>
+                <li>Jetzt kannst du unter <i>"Filter"</i> nach Jahrgängen sortieren</li>
+                <li>Wenn du dich dann für einen Test entschieden hast, kannst du auf <i>"Erstellen"</i> drücken und es wird sich ein neuer Tab öffnen, es wird eine kurze Zeit laden, da der Test erstellt wird</li>
+                <li>Fertig geladen, siehst du eine Vorschau von dem Test, jetzt kannst du dir diesen anschauen
+                <li>Eine Möglichkeit einen Test herunterzuladen ist, indem du:
+                    <ol>
+                        <li>Wieder auf den vorherigen Tab wechselst</li>
+                        <li>Auf den kleinen Pfeil nach unten neben <i>"Erstellen"</i> drückst</li>
+                        <li>Jetzt kannst du dir nochmal den Test anschauen, ihn herunterladen, sowie die Lösung anschauen und herunterladen</li>
+                    </ol>
+                </li>
+            </ol>
+        </div>
     </div>
 {% endblock %}

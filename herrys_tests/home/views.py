@@ -1,3 +1,4 @@
+from django.http import FileResponse
 from django.shortcuts import render
 
 
@@ -12,3 +13,8 @@ def über(response):
 
 def impressum(response):
     return render(response, 'home/impressum.html')
+
+
+def view_pdf(response, test_name):
+    file_path = f'/herrys_tests_github/herrys_tests/{test_name}.pdf'
+    return FileResponse(open(file_path, 'rb'), content_type='application/pdf')

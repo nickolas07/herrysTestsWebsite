@@ -9,4 +9,4 @@ class NeuerTest(forms.Form):
     kurs = forms.CharField(label='kurs',
                            widget=forms.TextInput(attrs={'class': "form-control", 'placeholder': "Kurs (z.B. GK)"}))
     lehrer = forms.CharField(label='lehrer',
-                             widget=forms.TextInput(attrs={'class': "form-control", 'placeholder': "Lehrer"}))
+                             widget=forms.TextInput(attrs={'class': "form-control", 'placeholder': "Lehrkraft"}))

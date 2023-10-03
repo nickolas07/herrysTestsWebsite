@@ -26,7 +26,7 @@ def erstellen_by_jahrgang(request, jahrgang):
             print(form.cleaned_data)
             test_name = form.cleaned_data['test_name']
             test_erstellen(test_name)
-            return redirect(to=f'pdf/{test_name}')
+            return redirect(to=f'/pdf/{test_name}')
     else:
         form = NeuerTest()
     return render(request, 'schüler/erstellen.html', {'form': form, 'Tests': Test.objects.all().order_by('name').filter(jahrgang=jahrgang)})

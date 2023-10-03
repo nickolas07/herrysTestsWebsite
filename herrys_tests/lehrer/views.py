@@ -32,7 +32,7 @@ def erstellen_by_jahrgang(request, jahrgang):
             kurs = form.cleaned_data['kurs'].replace(' ', '_')
             lehrer = form.cleaned_data['lehrer'].replace(' ', '_')
             test_erstellen(test_name, klasse, kurs, lehrer)
-            return redirect(to=f'pdf/{test_name}')
+            return redirect(to=f'/pdf/{test_name}')
     else:
         form = NeuerTest()
     return render(request, 'lehrer/erstellen.html', {'form': form, 'Tests': Test.objects.all().order_by('name').filter(jahrgang=jahrgang)})

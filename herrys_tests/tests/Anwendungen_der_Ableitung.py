@@ -5,7 +5,7 @@ import random
 import math
 import matplotlib.pyplot as plt
 from numpy.linalg import solve as slv
-from pylatex import Document, NoEscape, SmallText, LargeText, MediumText, NewPage, Tabular, Alignat, Figure
+from pylatex import Document, NoEscape, SmallText, LargeText, MediumText, NewPage, Tabular, Alignat, Figure, Center
 from pylatex.utils import bold
 from sympy import *
 
@@ -259,12 +259,12 @@ def erstellen(klasse=None, kurs=None, lehrer=None):
         Aufgabe = Document(geometry_options=geometry_options)
         # erste Seite
         if klasse is None and kurs is None and lehrer is None:
-            table1 = Tabular('c|c|c|', row_height=1.2)
-            table1.add_hline(2, 3)
-            table1.add_row(MediumText(bold('Torhorst - Gesamtschule')), 'Fach:', 'Datum:')
-            table1.add_row(SmallText('mit gymnasialer Oberstufe'), fach, datum)
-            table1.add_hline(2, 3)
-            Aufgabe.append(table1)
+            with Aufgabe.create(Center()):
+                with Aufgabe.create(Tabular('c|c|c|', row_height=1.2)) as table1:
+                    table1.add_hline(2, 3)
+                    table1.add_row(MediumText(bold('Torhorst - Gesamtschule')), 'Fach:', 'Datum:')
+                    table1.add_row(SmallText('mit gymnasialer Oberstufe'), fach, datum)
+                    table1.add_hline(2, 3)
             Aufgabe.append(' \n\n')
             Aufgabe.append(LargeText(bold(f'\n {art} \n\n')))
         else:
