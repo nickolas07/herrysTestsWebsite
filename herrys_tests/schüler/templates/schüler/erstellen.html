@@ -18,113 +18,112 @@
         }
     </style>
     
-
-<div class="container">
-    <div class="row">
-        <div class="dropdown jg-dropdown">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Filter
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/schüler/">Alle Jahrgänge</a></li>
-                <li><a class="dropdown-item" href="/schüler/klasse/10">Klasse 10</a></li>
-                <li><a class="dropdown-item" href="/schüler/klasse/11">Klasse 11</a></li>
-                <li><a class="dropdown-item" href="/schüler/klasse/12">Klasse 12</a></li>
-                <li><a class="dropdown-item" href="/schüler/klasse/13">Klasse 13</a></li>
-            </ul>
+    <div class="container">
+        <div class="row">
+            <div class="dropdown jg-dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Filter
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/schüler/">Alle Jahrgänge</a></li>
+                    <li><a class="dropdown-item" href="/schüler/klasse/10">Klasse 10</a></li>
+                    <li><a class="dropdown-item" href="/schüler/klasse/11">Klasse 11</a></li>
+                    <li><a class="dropdown-item" href="/schüler/klasse/12">Klasse 12</a></li>
+                    <li><a class="dropdown-item" href="/schüler/klasse/13">Klasse 13</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <ul class="list-group">
+                    {% for test in Tests %}
+                        {% if forloop.counter0|divisibleby:2 or loop.last %}
+                            <li class="list-group-item d-flex p-2 justify-content-between align-items-center">
+                                <div class="test_name">
+                                    {{ test.name }}
+                                </div>
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <div class="form-row horizontal-form">
+                                        {% for feld in form %}
+                                            {% if feld.label == "test_name"%}
+                                                {{ feld }}
+                                                <script>
+                                                    document.getElementById("id_test_name").value = "{{ test.name }}";
+                                                    document.getElementById("id_test_name").id = "{{ test.name }}";
+                                                </script>
+                                            {% else %}
+                                                <div class="col">
+                                                    {{ feld }}
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                        <div class="btn-group">
+                                            <a type="button" class="btn btn-outline-secondary" href="pdf/{{ test.name }} Vorschau" target="_blank">Vorschau</a>
+                                            <input type="submit" value="Erstellen" class="btn btn-secondary" formtarget="_blank">
+                                            <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <span class="visually-hidden">Toggle Dropdown</span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="/pdf/{{ test.name }}" target="_blank">Ansehen</a></li>
+                                                <li><a class="dropdown-item" href="download/{{ test.name }}">Herunterladen</a></li>
+                                                <li><hr class="dropdown-divider"></li>
+                                                <li><a class="dropdown-item" href="pdf/{{ test.name }} - Lsg" target="_blank">Lösung Ansehen</a></li>
+                                                <li><a class="dropdown-item" href="download/{{ test.name }} - Lsg">Lösung Herunterladen</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </form>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-6">
+                <ul class="list-group">
+                    {% for test in Tests %}
+                        {% if not forloop.counter0|divisibleby:2 %}
+                            <li class="list-group-item d-flex p-2 justify-content-between align-items-center">
+                                <div class="test_name">
+                                    {{ test.name }}
+                                </div>
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <div class="form-row horizontal-form">
+                                        {% for feld in form %}
+                                            {% if feld.label == "test_name"%}
+                                                {{ feld }}
+                                                <script>
+                                                    document.getElementById("id_test_name").value = "{{ test.name }}";
+                                                    document.getElementById("id_test_name").id = "{{ test.name }}";
+                                                </script>
+                                            {% else %}
+                                                <div class="col">
+                                                    {{ feld }}
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                        <div class="btn-group">
+                                            <a type="button" class="btn btn-outline-secondary" href="pdf/{{ test.name }} Vorschau" target="_blank">Vorschau</a>
+                                            <input type="submit" value="Erstellen" class="btn btn-secondary" formtarget="_blank">
+                                            <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <span class="visually-hidden">Toggle Dropdown</span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="pdf/{{ test.name }}" target="_blank">Ansehen</a></li>
+                                                <li><a class="dropdown-item" href="download/{{ test.name }}">Herunterladen</a></li>
+                                                <li><hr class="dropdown-divider"></li>
+                                                <li><a class="dropdown-item" href="pdf/{{ test.name }} - Lsg" target="_blank">Lösung Ansehen</a></li>
+                                                <li><a class="dropdown-item" href="download/{{ test.name }} - Lsg">Lösung Herunterladen</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </form>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-6">
-            <ul class="list-group">
-                {% for test in Tests %}
-                    {% if forloop.counter0|divisibleby:2 or loop.last %}
-                        <li class="list-group-item d-flex p-2 justify-content-between align-items-center">
-                            <div class="test_name">
-                                {{ test.name }}
-                            </div>
-                            <form method="post">
-                                {% csrf_token %}
-                                <div class="form-row horizontal-form">
-                                    {% for feld in form %}
-                                        {% if feld.label == "test_name"%}
-                                            {{ feld }}
-                                            <script>
-                                                document.getElementById("id_test_name").value = "{{ test.name }}";
-                                                document.getElementById("id_test_name").id = "{{ test.name }}";
-                                            </script>
-                                        {% else %}
-                                            <div class="col">
-                                                {{ feld }}
-                                            </div>
-                                        {% endif %}
-                                    {% endfor %}
-                                    <div class="btn-group">
-                                        <a type="button" class="btn btn-outline-secondary" href="pdf/{{ test.name }} Vorschau" target="_blank">Vorschau</a>
-                                        <input type="submit" value="Erstellen" class="btn btn-secondary" formtarget="_blank">
-                                        <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <span class="visually-hidden">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="/pdf/{{ test.name }}" target="_blank">Ansehen</a></li>
-                                            <li><a class="dropdown-item" href="download/{{ test.name }}">Herunterladen</a></li>
-                                            <li><hr class="dropdown-divider"></li>
-                                            <li><a class="dropdown-item" href="pdf/{{ test.name }} - Lsg" target="_blank">Lösung Ansehen</a></li>
-                                            <li><a class="dropdown-item" href="download/{{ test.name }} - Lsg">Lösung Herunterladen</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </form>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="col-6">
-            <ul class="list-group">
-                {% for test in Tests %}
-                    {% if not forloop.counter0|divisibleby:2 %}
-                        <li class="list-group-item d-flex p-2 justify-content-between align-items-center">
-                            <div class="test_name">
-                                {{ test.name }}
-                            </div>
-                            <form method="post">
-                                {% csrf_token %}
-                                <div class="form-row horizontal-form">
-                                    {% for feld in form %}
-                                        {% if feld.label == "test_name"%}
-                                            {{ feld }}
-                                            <script>
-                                                document.getElementById("id_test_name").value = "{{ test.name }}";
-                                                document.getElementById("id_test_name").id = "{{ test.name }}";
-                                            </script>
-                                        {% else %}
-                                            <div class="col">
-                                                {{ feld }}
-                                            </div>
-                                        {% endif %}
-                                    {% endfor %}
-                                    <div class="btn-group">
-                                        <a type="button" class="btn btn-outline-secondary" href="pdf/{{ test.name }} Vorschau" target="_blank">Vorschau</a>
-                                        <input type="submit" value="Erstellen" class="btn btn-secondary" formtarget="_blank">
-                                        <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <span class="visually-hidden">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="pdf/{{ test.name }}" target="_blank">Ansehen</a></li>
-                                            <li><a class="dropdown-item" href="download/{{ test.name }}">Herunterladen</a></li>
-                                            <li><hr class="dropdown-divider"></li>
-                                            <li><a class="dropdown-item" href="pdf/{{ test.name }} - Lsg" target="_blank">Lösung Ansehen</a></li>
-                                            <li><a class="dropdown-item" href="download/{{ test.name }} - Lsg">Lösung Herunterladen</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </form>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-</div>
 {% endblock %}
