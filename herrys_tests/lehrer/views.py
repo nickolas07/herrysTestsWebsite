@@ -19,7 +19,8 @@ def erstellen(request):
             return redirect(to=f'pdf/{test_name}')
     else:
         form = NeuerTest()
-    return render(request, 'lehrer/erstellen.html', {'form': form, 'Tests': Test.objects.all().order_by('name')})
+    return render(request, 'lehrer/erstellen.html',
+                  {'form': form, 'Tests': Test.objects.all().order_by('name')})
 
 
 def erstellen_by_jahrgang(request, jahrgang):
@@ -35,7 +36,8 @@ def erstellen_by_jahrgang(request, jahrgang):
             return redirect(to=f'/pdf/{test_name}')
     else:
         form = NeuerTest()
-    return render(request, 'lehrer/erstellen.html', {'form': form, 'Tests': Test.objects.all().order_by('name').filter(jahrgang=jahrgang)})
+    return render(request, 'lehrer/erstellen.html',
+                  {'form': form, 'Tests': Test.objects.all().order_by('name').filter(jahrgang=jahrgang)})
 
 
 def test_erstellen(test_name, klasse, kurs, lehrer):

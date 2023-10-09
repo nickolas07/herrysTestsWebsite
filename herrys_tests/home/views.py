@@ -1,5 +1,7 @@
 from django.http import FileResponse
 from django.shortcuts import render
+import os
+import datetime
 
 
 # Create your views here.
@@ -13,6 +15,10 @@ def über(response):
 
 def impressum(response):
     return render(response, 'home/impressum.html')
+
+
+def Datenschutzerklärung(response):
+    return render(response, 'home/datenschutzerklärung.html')
 
 
 def view_pdf(response, test_name):

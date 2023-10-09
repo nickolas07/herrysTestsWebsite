@@ -7,7 +7,7 @@ from .forms import NeuerTest
 
 # Create your views here.
 def erstellen(request):
-    if request.method == 'POST':
+    if 'POST' == request.method:
         form = NeuerTest(request.POST)
         if form.is_valid():
             print(form.cleaned_data)
@@ -16,7 +16,8 @@ def erstellen(request):
             return redirect(to=f'pdf/{test_name}')
     else:
         form = NeuerTest()
-    return render(request, 'schüler/erstellen.html', {'form': form, 'Tests': Test.objects.all().order_by('name')})
+    return render(request, 'schüler/erstellen.html',
+                  {'form': form, 'Tests': Test.objects.all().order_by('name')})
 
 
 def erstellen_by_jahrgang(request, jahrgang):
@@ -29,7 +30,8 @@ def erstellen_by_jahrgang(request, jahrgang):
             return redirect(to=f'/pdf/{test_name}')
     else:
         form = NeuerTest()
-    return render(request, 'schüler/erstellen.html', {'form': form, 'Tests': Test.objects.all().order_by('name').filter(jahrgang=jahrgang)})
+    return render(request, 'schüler/erstellen.html',
+                  {'form': form, 'Tests': Test.objects.all().order_by('name').filter(jahrgang=jahrgang)})
 
 
 def test_erstellen(test_name):
@@ -53,3 +55,4 @@ def download_pdf(response, test_name):
 
 def impressum(response):
     return render(response, 'home/impressum.html', {})
+        

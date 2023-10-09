@@ -131,8 +131,8 @@ def erstellen(klasse=None, kurs=None, lehrer=None):
         if c in teilaufg:
             fkt_tp = fkt - fkt_tangente
             fkt_tp_str = (
-                    str(faktor) + 'x^2~' + vorz_str(N(-1 * faktor * (x_wert_x1 + x_wert_x2) - m_tangente, 3))
-                    + 'x~' + vorz_str(N(faktor * x_wert_x1 * x_wert_x2 + m_tangente, 3)))
+                        str(faktor) + 'x^2~' + vorz_str(N(-1 * faktor * (x_wert_x1 + x_wert_x2) - m_tangente, 3))
+                        + 'x~' + vorz_str(N(faktor * x_wert_x1 * x_wert_x2 + m_tangente, 3)))
             p_fkt_tp = -1 * (x_wert_x1 + x_wert_x2) - m_tangente / faktor
             q_fkt_tp = x_wert_x1 * x_wert_x2 + m_tangente / faktor
             fkt_tp_pq = ('x^2~' + vorz_str(N(-1 * (x_wert_x1 + x_wert_x2) - m_tangente / faktor, 3)) + 'x~'
@@ -169,16 +169,16 @@ def erstellen(klasse=None, kurs=None, lehrer=None):
             winkel_beta = N(math.degrees(atan(m_tangente)), 3)
             loesung_1 = (r' \gamma ~=~ \vert ' + str(winkel_beta) + r'^\circ~-~' + vorz_str_minus(winkel_alpha)
                          + r'^\circ \vert ~=~\mathbf{' + str(abs(winkel_beta - winkel_alpha))
-                         + r'^\circ} \quad (2P) \\')
+                         + r'^\circ} \quad (2P) \\\\')
             if abs(winkel_beta - winkel_alpha) > 90:
                 loesung_1 = (r' \gamma ~=~ \vert ' + str(winkel_beta) + r'^\circ~-~' + vorz_str_minus(winkel_alpha)
                              + r'^\circ \vert ~=~' + str(abs(winkel_beta - winkel_alpha))
                              + r'^\circ \quad \to \quad \gamma ~=~ 180^\circ ~-~'
                              + str(abs(winkel_beta - winkel_alpha)) + r'^\circ~=~\mathbf{'
-                             + str(180 - abs(winkel_beta - winkel_alpha)) + r'^\circ} \quad (2P) \\')
+                             + str(180 - abs(winkel_beta - winkel_alpha)) + r'^\circ} \quad (2P) \\\\')
                 Punkte += 1
 
-            print(m_fkt_x_tp)
+            # print(m_fkt_x_tp)
 
             aufgabe.append(str(teilaufg[i]) + ') Berechne den Schnittwinkel der Seilbahn mit dem Hügel. \n\n')
             loesung.append(str(teilaufg[i]) + r') f^{ \prime } (x) ~=~ ' + fkt_abl_str
@@ -195,16 +195,33 @@ def erstellen(klasse=None, kurs=None, lehrer=None):
         if e in teilaufg:
             aufgabe.append(str(teilaufg[i]) + ') Berechne den  Startpunkt der Seilbahn, damit sie am Schnittpunkt die'
                                               ' Steigung des Hügels besitzt. \n\n')
-            loesung.append(str(teilaufg[i]) + r') ')
+            loesung.append(str(teilaufg[i]) + r') \quad \mathrm{aus~} f^{ \prime } (' + str(N(x_werte_tp[0], 3))
+                           + ') ~=~ ' + str(N(m_fkt_x_tp, 3)) + r' \mathrm{~und~} P_1('
+                           + str(N(x_werte_tp[0], 3)) + r' \vert' + str(N(y_wert_tp, 3))
+                           + r') \mathrm{~folgt~} \quad \to \quad' + str(N(y_wert_tp, 3)) + '~=~'
+                           + str(N(m_fkt_x_tp, 3)) + r' \cdot ' + vorz_str_minus(N(x_werte_tp[0], 3))
+                           + r'+~n \quad \vert ' + vorz_str(N(-1 * m_fkt_x_tp * x_werte_tp[0], 3))
+                           + r' \quad n~=~' + latex(N(y_wert_tp - m_fkt_x_tp * x_werte_tp[0], 3))
+                           + r' \quad (3P) \\ x_0 ~=~ - \frac{n}{m} ~=~ - \frac{'
+                           + str(N(y_wert_tp - m_fkt_x_tp * x_werte_tp[0], 3)) + '}{'
+                           + str(N(m_fkt_x_tp, 3)) + r'} ~=~\mathbf{'
+                           + str(N(-1 * ((y_wert_tp - m_fkt_x_tp * x_werte_tp[0]) / m_fkt_x_tp), 3))
+                           + r'} \quad (2P) \\\\')
 
             Punkte += 4
             i += 1
 
         if f in teilaufg:
             aufgabe.append(str(teilaufg[i]) + ') Berechne die Höhe des Hügels. \n\n')
-            loesung.append(str(teilaufg[i]) + r') ')
+            loesung.append(str(teilaufg[i]) + r') \quad f(x)~=~' + fkt_str + '~=~' + str(faktor) + r' \cdot (~x^2~'
+                           + vorz_str(p_fkt) + '~x)~' + vorz_str(faktor * q_fkt) + r' \\ ~=~' + str(faktor)
+                           + r' \cdot (~x^2~' + vorz_str(p_fkt) + '~x~' + vorz_str((p_fkt / 2) ** 2)
+                           + vorz_str(-1 * (p_fkt / 2) ** 2) + ')' + vorz_str(faktor * q_fkt) + r' \\ ~=~' + str(faktor)
+                           + r' \cdot ((x' + vorz_str(-1 * x_wert_s) + ')^2' + vorz_str(-1 * (p_fkt / 2) ** 2) + ')'
+                           + vorz_str(faktor * q_fkt) + '~=~' + str(faktor) + '(~x~' + vorz_str(-1 * x_wert_s)
+                           + r'~)^2\mathbf{' + vorz_str(y_wert_s) + r'}\quad (3P) \\\\')
 
-            Punkte += 4
+            Punkte += 3
             i += 1
 
         return [aufgabe, loesung, Punkte]
@@ -226,53 +243,90 @@ def erstellen(klasse=None, kurs=None, lehrer=None):
             return menge
 
         if a in teilaufg:
-            a1, a2, a3 = faktorliste(2, 10, 3)
-            e1, e2 = (nzahl(2, 5) * 2) - 1, (nzahl(2, 5) * 2) - 1
-            funktionen_liste = (
-                [[a1 * x ** 2 + a2 * x + a3, str(a1) + 'x^2' + vorz_str(a2) + 'x' + vorz_str(a3), 2 * a1 * x + a2],
-                 [a1 / (x ** e1), r' \frac{' + str(a1) + '}{x^{' + str(e1) + '}}',
-                  str(-1 * a1 * e1) + r' \cdot x^{' + str(-1 * e1 - 1) + '}'],
-                 [a1 * x ** (e1 / e2), str(a1) + r' \sqrt[' + str(e1) + ']{x^{' + str(e2) + '}}',
-                  latex(Rational(a1 * e2, e1)) + r' \cdot x^{' + latex(Rational(e2, e1) - 1) + '}']])
-            Aufgabe = random.randint(0, 1)
-            Aufgabe = 1
-
-            funktion_liste = funktionen_liste[Aufgabe]
-            fkt, fkt_str, fkt_abl_str = funktion_liste[0], funktion_liste[1], funktion_liste[2]
-            fkt_abl = diff(fkt, x)
-            stelle = zzahl(3, 10) / 2
-            steigung = int(fkt_abl.subs(x, stelle))
+            steigung = 0
             while steigung == 0:
-                stelle = zzahl(3, 10) / 2
-                steigung = int(fkt_abl.subs(x, stelle))
-            print('stelle =' + str(stelle))
+                try:
+                    a1, a2, a3 = faktorliste(2, 10, 3)
+                    e1 = (nzahl(2, 4) * 2) - 1
+                    e2 = e1 + (nzahl(0, 2) * 2) + 1
+                    funktionen_liste = ([[a1 * x ** 2 + a2 * x + a3, str(a1) + 'x^2' + vorz_str(a2) + 'x'
+                                          + vorz_str(a3), str(2 * a1) + r'x' + vorz_str(a2)],
+                                         [a1 / (x ** e1), r' \frac{' + str(a1) + '}{x^{' + str(e1)
+                                          + '}}', str(-1 * a1 * e1) + r' \cdot x^{' + str(-1 * e1 - 1) + '}'],
+                                         [a1 * x ** (e1 / e2), str(a1) + r' \sqrt[' + str(e1) + ']{x^{' + str(e2)
+                                          + '}}', latex(Rational(a1 * e2, e1)) + r' \cdot x^{'
+                                          + latex(Rational(e2, e1) - 1) + '}']])
+
+                    Aufgabe = random.randint(0, 2)
+                    # Aufgabe = 1
+                    funktion_liste = funktionen_liste[Aufgabe]
+                    fkt, fkt_str, fkt_abl_str = funktion_liste[0], funktion_liste[1], funktion_liste[2]
+                    fkt_abl = diff(fkt, x)
+                    stelle = nzahl(3, 10) / 2
+                    steigung = int(fkt_abl.subs(x, stelle))
+                except TypeError as te:
+                    print(te)
+                    steigung = 0
+
+            print('stelle = ' + str(stelle))
             print('steigung = ' + str(steigung))
             print('faktor = ' + str(a1))
             print('exponent = ' + str(e1))
-            print(steigung / (-1 * a1 * e1))
+            print('diskrimante = ' + str(steigung / (-1 * a1 * e1)))
+
             loesung_liste = [r' \quad f ^ { \prime} (x) ~ = ~' + str(fkt_abl_str) + '~ = ~' + str(steigung)
                              + r'~ \vert ~-~' + vorz_str_minus(a2) + r'~ \vert \div ' + vorz_str_minus(2 * a1)
                              + r' \quad \to \quad x~=~\mathbf{' + latex(N((steigung - a2) / (2 * a1), 3))
-                             + r'} \quad (3P) \\',
-                             r' \quad f ^ { \prime} (x) ~ = ~' + str(fkt_abl_str) + '~ = ~' + str(steigung)
-                             + r'~ \vert \div' + vorz_str_minus(-1 * a1 * e1) + r'~ \vert ~(~)^{'
+                             + r'} \quad (3P) \\\\ \quad f ^ { \prime} (x) ~ = ~' + str(fkt_abl_str) + '~ = ~'
+                             + str(steigung) + r'~ \vert \div' + vorz_str_minus(-1 * a1 * e1) + r'~ \vert ~(~)^{'
                              + str(Rational(1, -1 * e1 - 1)) + r'} \quad \to \quad x~=~ \big('
                              + latex(Rational(steigung, -1 * a1 * e1)) + r' \big) ^{'
                              + latex(Rational(1, -1 * e1 - 1)) + r'} ~=~\mathbf{'
-                             + latex(N((sqrt((steigung / (-1 * a1 * e1)), 1 - e1)), 3))
-                             + r'} \quad (3P) \\']
-            loesung_1 = loesung_liste[Aufgabe]
+                             + latex(N(((steigung / (-1 * a1 * e1)) ** (1 / (-1 * e1 - 1))), 3))
+                             + r'} \quad (3P) \\\\ \quad f ^ { \prime} (x) ~ = ~' + str(fkt_abl_str) + '~ = ~'
+                             + str(steigung) + r'~ \vert \div' + vorz_str_minus(Rational(a1 * e2, e1))
+                             + r'~ \vert ~(~)^{' + latex(N(1 / ((e2 - e1) / e1), 3))
+                             + r'} \quad \to \quad x~=~ \Big(' + latex(Rational(steigung * e1, a1 * e2))
+                             + r' \Big) ^{ ' + latex(N(1 / ((e2 - e1) / e1), 3)) + r'} ~=~\mathbf{'
+                             + latex(N(((steigung * e1) / (a1 * e2)) ** (1 / ((e2 - e1) / e1)), 3))
+                             + r'} \quad (3P) \\\\']
 
-            aufgabe.append(str(teilaufg[i]) + r') Berechne die Stelle, an der die Funktion f die Steigung m hat. ')
-            aufgabe.append(
-                r' f(x)~=~' + fkt_str + r' \quad \mathrm{und} \quad m~=~' + str(steigung) + r' \hspace{20em} \\')
+            loesung_1 = loesung_liste[Aufgabe]
+            aufgabe.append(str(teilaufg[i]) + r') Berechne den Wert x, an der die Funktion f die Steigung m hat. ')
+            aufgabe.append(r' f(x)~=~' + fkt_str + r' \quad \mathrm{und} \quad m~=~' + str(steigung)
+                           + r' \hspace{20em} \\')
             loesung.append(str(teilaufg[i]) + r') \quad' + loesung_1)
 
             Punkte += 3
             i += 1
+
+        if b in teilaufg:
+            a1, a2, a3 = faktorliste(2, 10, 3)
+            verschiebung = zzahl(2, 10) / 2
+            fkt_parabel, fkt_str_parabel, fkt_abl_str_parabel = (a1 * x ** 2 + a, str(a1) + 'x^2 + a', str(2 * a1)
+                                                                 + 'x')
+            fkt_gerade, fkt_str_gerade, fkt_abl_str_gerade = (a2 * x + a3, str(a2) + 'x' + vorz_str(a3), str(a2))
+
+            aufgabe.append(str(teilaufg[i]) + r') Berechne den Wert von a, für den sich beide Funktionen berühren.')
+            aufgabe.append(r'f(x)~=~' + fkt_str_parabel + r' \quad \mathrm{und} \quad g(x)~=~' + fkt_str_gerade
+                           + r' \hspace{15em}')
+            loesung.append(str(teilaufg[i]) + r') \quad f ^{ \prime} (x) ~ = ~ g ^{ \prime } (x) \quad \to \quad'
+                           + fkt_abl_str_parabel + '~ = ~' + fkt_abl_str_gerade + r' \quad \to \quad \vert \div '
+                           + vorz_str_minus(2 * a1) + r' \quad \to \quad x~=~' + latex(Rational(a2, (2 * a1)))
+                           + r' \quad (3P) \\' + r' \quad f(' + latex(Rational(a2, (2 * a1)))
+                           + r') ~ = ~ g(' + latex(Rational(a2, (2 * a1))) + r') \quad \to \quad'
+                           + str(a1) + r' \cdot \Big(' + latex(Rational(a2, (2 * a1))) + r' \Big) ^2 + a ~=~'
+                           + str(a2) + r' \cdot \Big( ' + latex(Rational(a2, (2 * a1))) + r' \Big)'
+                           + vorz_str(a3) + r' \quad \vert ' + vorz_str(N(-1 * (a2 ** 2) / (4 * a1), 3))
+                           + r' \quad \to \quad a~=~\mathbf{'
+                           + latex(N((a2 ** 2 / (2 * a1)) + a3 - (a2 ** 2) / (4 * a1), 3)) + r'} \quad (3P)')
+
+            Punkte += 6
+            i += 1
+
         return [aufgabe, loesung, Punkte]
 
-    aufgaben = [anwendungen(1, [a, b, c, d, e, f]), steigungen(2, [a])]
+    aufgaben = [anwendungen(1, [a, b, c, d, e, f]), steigungen(2, [a, b])]
     Punkte = str(sum(aufgabe[2] for aufgabe in aufgaben))
 
     # Angaben für den Test im pdf-Dokument
@@ -301,8 +355,8 @@ def erstellen(klasse=None, kurs=None, lehrer=None):
         else:
             table1 = Tabular('c|c|c|c|c|c|', row_height=1.2)
             table1.add_hline(2, 6)
-            table1.add_row(MediumText(bold('Torhorst - Gesamtschule')), 'Klasse:', 'Fach:', 'Niveau:', 'Lehrkraft:',
-                           'Datum:')
+            table1.add_row(MediumText(bold('Torhorst - Gesamtschule')), 'Klasse:', 'Fach:', 'Niveau:',
+                           'Lehrkraft:', 'Datum:')
             table1.add_row(SmallText('mit gymnasialer Oberstufe'), klasse, fach, kurs, lehrer, datum)
             table1.add_hline(2, 6)
             Aufgabe.append(table1)
