@@ -24,9 +24,11 @@
             margin-right: 1%;
         }
         #info_text {
-            font-size: 70%;
-            opacity: 50%;
+            font-size: 80%;
+            opacity: 75%;
             margin: 2px !important;
+            color: #FACC25;
+            letter-spacing: +0.8px;
         }
     </style>
     
@@ -38,13 +40,13 @@
                   </a>
                   <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="/lehrer/">Alle Jahrgänge</a></li>
-                    <li><a class="dropdown-item" href="/lehrer/klasse/10">Klasse 10</a></li>
-                    <li><a class="dropdown-item" href="/lehrer/klasse/11">Klasse 11</a></li>
-                    <li><a class="dropdown-item" href="/lehrer/klasse/12">Klasse 12</a></li>
-                    <li><a class="dropdown-item" href="/lehrer/klasse/13">Klasse 13</a></li>
+                    <li><a class="dropdown-item" href="/lehrer/10">Klasse 10</a></li>
+                    <li><a class="dropdown-item" href="/lehrer/11">Klasse 11</a></li>
+                    <li><a class="dropdown-item" href="/lehrer/12">Klasse 12</a></li>
+                    <li><a class="dropdown-item" href="/lehrer/13">Klasse 13</a></li>
                   </ul>
                 </div>
-                <p id="info_text">Vorherige erstellte Tests werden beim Erstellen gelöscht</p>
+                <p id="info_text">Vorherige erstellte Tests werden beim Erstellen gelöscht!</p>
             <div class="col-12">
                 <ul class="list-group">
                     {% for test in Tests %}

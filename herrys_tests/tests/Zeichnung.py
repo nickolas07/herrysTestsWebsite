@@ -32,7 +32,7 @@ def Graph(a_1, b_1, xwert, f, titel, n, name, *lswerte):
         elif werte is not None and lswerte[i + 1] is not None:  # Überprüft, ob es den Wert oder den nächsten Wert gibt
             plt.plot(werte, lswerte[i + 1], linewidth=2)
     plt.suptitle(titel, usetex=True)
-    return plt.savefig(f'{name}', dpi=200)
+    return plt.savefig(name, dpi=200)
 
 
 def loeschen():

@@ -1,11 +1,12 @@
-import datetime
-import sys
 import string
 import numpy
 import random
+import sys
+import datetime
+import os
 import matplotlib.pyplot as plt
 from numpy.linalg import solve as slv
-from pylatex import Document, NoEscape, SmallText, LargeText, MediumText, NewPage, Tabular, Alignat, Figure, Center
+from pylatex import Document, NoEscape, SmallText, LargeText, MediumText, NewPage, Tabular, Alignat, Figure
 from pylatex.utils import bold
 from sympy import *
 import Zeichnung
@@ -13,6 +14,8 @@ import Zeichnung
 # Definition der Funktionen
 
 a, b, c, d, e, f, g, x, y, z = symbols('a b c d e f g x y z')
+
+path = str()
 
 
 def zzahl(p, q):
@@ -86,7 +89,6 @@ def erstellen(klasse=None, kurs=None, lehrer=None):
         if a in teilaufg:
             aufgabe.append(str(teilaufg[i]) + f') Bestimme zeichnerisch die mittlere Änderungsrate im '
                                               f'Interval [ {x_wert_1} | {x_wert_2} ] vom Graphen f. \n\n')
-
             dy = y_wert_2 - y_wert_1
             dx = x_wert_2 - x_wert_1
             fkt_sekante = dy / dx * (x - x_wert_2) + y_wert_2
@@ -94,7 +96,7 @@ def erstellen(klasse=None, kurs=None, lehrer=None):
             ywerte = [fkt.subs(x, xwerte[i]) for i in range(60)]
             Zeichnung.loeschen()
             Zeichnung.Graph(xwerte, ywerte, s_xwert, fkt, r'Dargestellt ist der Graph von: '
-                                                          r'\ $f(x) =' + fkt_str + '$', 'f', 'Aufgabe_1')
+                                                          r'\ $f(x) =' + fkt_str + '$', 'f', f'{path}Aufgabe_1')
 
             xwerte_dy = [x_wert_2, x_wert_2]
             ywerte_dy = [y_wert_1, y_wert_2]
@@ -112,7 +114,7 @@ def erstellen(klasse=None, kurs=None, lehrer=None):
             if c not in teilaufg:
                 Zeichnung.Graph(xwerte, ywerte, s_xwert, fkt, r'Dargestellt ist der Graph von: '
                                                               r'\ $f(x) =' + fkt_str + '$', 'f',
-                                'loesung_Aufgabe_1', xwerte_dy, ywerte_dy, xwerte_dx, ywerte_dx,
+                                f'{path}loesung_Aufgabe_1', xwerte_dy, ywerte_dy, xwerte_dx, ywerte_dx,
                                 xwerte_geraden, ywerte_sekante)
 
             Punkte += 3
@@ -140,7 +142,7 @@ def erstellen(klasse=None, kurs=None, lehrer=None):
                 xwerte = [-6 + n / 5 for n in range(60)]
                 ywerte = [fkt.subs(x, xwerte[i]) for i in range(60)]
                 Zeichnung.Graph(xwerte, ywerte, s_xwert, fkt, r'Dargestellt ist der Graph von: '
-                                                              r'\ $f(x) =' + fkt_str + '$', 'f', 'Aufgabe_1')
+                                                              r'\ $f(x) =' + fkt_str + '$', 'f', f'{path}Aufgabe_1')
 
             steigung_tangente = fkt_abl.subs(x, x_wert_2)
             fkt_tangente = steigung_tangente * (x - x_wert_2) + y_wert_2
@@ -158,14 +160,14 @@ def erstellen(klasse=None, kurs=None, lehrer=None):
                 xwerte = [-6 + n / 5 for n in range(60)]
                 ywerte = [fkt.subs(x, xwerte[i]) for i in range(60)]
                 Zeichnung.Graph(xwerte, ywerte, s_xwert, fkt,
-                                r'Dargestellt ist der Graph von: \ $f(x) =' + fkt_str + '$', 'f', 'Aufgabe_1')
+                                r'Dargestellt ist der Graph von: \ $f(x) =' + fkt_str + '$', 'f', f'{path}Aufgabe_1')
                 Zeichnung.Graph(xwerte, ywerte, fkt, r'Dargestellt ist der Graph von: \ $f(x) ='
-                                + fkt_str + '$', 'f', 'loesung_Aufgabe_1', '', xwerte_dy_c,
+                                + fkt_str + '$', 'f', f'{path}loesung_Aufgabe_1', '', xwerte_dy_c,
                                 ywerte_dy_c, xwerte_dx_c, ywerte_dx_c, xwerte_geraden, ywerte_tangente)
             else:
                 Zeichnung.Graph(xwerte, ywerte, s_xwert, fkt, r'Lösung für Aufgabe 1a/c - Geraden '
                                                               r'und ihre Steigungsdreiecke',
-                                'f', 'loesung_Aufgabe_1', xwerte_dy, ywerte_dy, xwerte_dx, ywerte_dx,
+                                'f', f'{path}loesung_Aufgabe_1', xwerte_dy, ywerte_dy, xwerte_dx, ywerte_dx,
                                 xwerte_geraden, ywerte_sekante, xwerte_dy_c, ywerte_dy_c, xwerte_dx_c, ywerte_dx_c,
                                 xwerte_geraden, ywerte_tangente)
 
@@ -382,7 +384,7 @@ def erstellen(klasse=None, kurs=None, lehrer=None):
             loesung.append(r'ii) \quad f_2(x) ~=~' + fkt_ii_str + '~=~' + fkt_ii_str_einf +
                            r' \quad f_2^{ \prime} (x) ~=~\mathbf{' + fkt_ii_str_abl + r'} \quad (1P) \\')
             loesung.append(r'iii) \quad f_3(x) ~=~' + fkt_iii_str + '~=~' + fkt_iii_str_einf +
-                           r' \quad f_3^{ \prime} (x) ~=~\mathbf{' + fkt_iii_str_abl + r'} \quad (2P) \\')
+                           r' \quad f_3^{ \prime} (x) ~=~\mathbf{' + fkt_iii_str_abl + r'} \quad (2P) \\\\')
             Punkte += 4
             i += 1
         if d in teilaufg:
@@ -407,17 +409,16 @@ def erstellen(klasse=None, kurs=None, lehrer=None):
 
             loesung_vektor = slv(A, lv)
             print('2d) lösungsvektor:' + str(loesung_vektor))
-            fkt = N(loesung_vektor[0], 2) * x ** 3 + N(loesung_vektor[1], 2) * x ** 2 + N(loesung_vektor[2], 2) * x + N(
-                loesung_vektor[3], 2)
+            fkt = N(loesung_vektor[0], 2) * x ** 3 + N(loesung_vektor[1], 2) * x ** 2 + N(loesung_vektor[2],2) * x + N(loesung_vektor[3], 2)
             fkt_abl = diff(fkt, x, 1)
             xwerte_d = [-6 + n / 5 for n in range(60)]
             ywerte_d = [fkt.subs(x, xwerte_d[i]) for i in range(60)]
             ywerte_abl_d = [fkt_abl.subs(x, xwerte_d[i]) for i in range(60)]
             Zeichnung.loeschen()
-            Zeichnung.Graph(xwerte_d, ywerte_d, x_wert_1, fkt, 'Funktionsgraph', 'f', 'Aufgabe_2')
+            Zeichnung.Graph(xwerte_d, ywerte_d, x_wert_1, fkt, 'Funktionsgraph', 'f', f'{path}Aufgabe_2')
             Zeichnung.Graph(xwerte_d, ywerte_d, x_wert_1, fkt, 'Lösung für Aufgabe 2d - '
                                                                'Graph und seine Ableitung', 'f',
-                            'loesung_Aufgabe_2', xwerte_d, ywerte_abl_d)
+                            f'{path}loesung_Aufgabe_2', xwerte_d, ywerte_abl_d)
             aufgabe.append(str(teilaufg[i]) + r') Skizziere im Koordinatensystem den Graphen der Ableitungsfunktion.')
             loesung.append(str(teilaufg[i]) + r') \quad \mathrm{~Graph~der~Ableitungsfunktion~(2P)} ')
             Punkte += 2
@@ -435,7 +436,7 @@ def erstellen(klasse=None, kurs=None, lehrer=None):
     try:
         lehrer = lehrer.replace('_', ' ')
         kurs = kurs.replace('_', ' ')
-    except:
+    except AttributeError:
         pass
 
     # der Teil in dem die PDF-Datei erzeugt wird
@@ -472,17 +473,16 @@ def erstellen(klasse=None, kurs=None, lehrer=None):
 
         Aufgabe.append('\n\n')
         with Aufgabe.create(Figure(position='h!')) as graph:
-            graph.add_image(r'Aufgabe_2.png', width='300px')
-
+            graph.add_image(f'{path}Aufgabe_2.png', width='300px')
         Aufgabe.append(MediumText(bold(f'Du hast ........ von {Punkte} möglichen Punkten erhalten. \n\n')))
 
         Aufgabe.append(NewPage())
         Aufgabe.append(LargeText(bold('Bearbeitet von:')))
         Aufgabe.append(' \n\n')
         with Aufgabe.create(Figure(position='h!')) as graph:
-            graph.add_image(r'Aufgabe_1.png', width='400px')
+            graph.add_image(f'{path}Aufgabe_1.png', width='400px')
 
-        Aufgabe.generate_pdf(f'{art}', clean_tex=true)
+        Aufgabe.generate_pdf(f'{path}{art}', clean_tex=true)
 
     # Erwartungshorizont
     def Erwartungshorizont():
@@ -497,15 +497,15 @@ def erstellen(klasse=None, kurs=None, lehrer=None):
 
         Loesung.append('\n\n')
         with Loesung.create(Figure(position='h!')) as graph:
-            graph.add_image(r'loesung_Aufgabe_2.png', width='400px')
+            graph.add_image(f'{path}loesung_Aufgabe_2.png', width='400px')
 
         Loesung.append(MediumText(bold(f'insgesamt {Punkte} Punkte')))
 
         Loesung.append(NewPage())
         with Loesung.create(Figure(position='h!')) as graph:
-            graph.add_image(r'loesung_Aufgabe_1.png', width='400px')
+            graph.add_image(f'{path}loesung_Aufgabe_1.png', width='400px')
 
-        Loesung.generate_pdf(f'{art} - Lsg', clean_tex=true)
+        Loesung.generate_pdf(f'{path}{art} - Lsg', clean_tex=true)
 
     # Druck der Seiten
     Hausaufgabenkontrolle()
@@ -513,8 +513,16 @@ def erstellen(klasse=None, kurs=None, lehrer=None):
 
 
 if __name__ == '__main__':
+    # print(sys.argv)
+    # print(*sys.argv[1:-1])
     if len(sys.argv) > 1:
-        sys.argv.pop(0)
-        erstellen(*sys.argv)
+        # Über die Website
+        path = f'{'/'.join(os.path.abspath(__file__).split('\\')[:-2])}/{sys.argv[-1]}/erstellt/'
+        erstellen(*sys.argv[1:-1])
     else:
-        erstellen()
+        # Über das Ausführen der Datei
+        path = f'{'/'.join(os.path.abspath(__file__).split('\\')[:-1])}/erstellt/'  # Pfad, an dem PDF und PNG
+        # erstellt werden sollen
+        # Standard: In einem Ordner ("erstellt") im Unterordner wo die Python-Datei drinnen ist
+        erstellen(klasse=12, kurs='Leistungskurs', lehrer='Herr Herrys')
+    print(path)
