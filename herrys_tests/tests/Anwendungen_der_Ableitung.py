@@ -396,9 +396,8 @@ if __name__ == '__main__':
     # print(sys.argv)
     # print(*sys.argv[1:-1])
     if len(sys.argv) > 1:
-        path = f'{'/'.join(os.path.abspath(__file__).split('\\')[:-2])}/{sys.argv[-1]}/erstellt/'
+        path = f'{'/'.join(os.path.abspath(__file__).split('\\')[:-2])}/{sys.argv[-1]}/kontrollen/erstellt/'
         erstellen(*sys.argv[1:-1])
     else:
         path = f'{'/'.join(os.path.abspath(__file__).split('\\')[:-1])}/erstellt/'
         erstellen(klasse=12, kurs='Leistungskurs', lehrer='Herr Herrys')
-    print(path)

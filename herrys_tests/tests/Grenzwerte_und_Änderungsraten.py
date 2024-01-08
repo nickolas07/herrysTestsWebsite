@@ -486,7 +486,7 @@ if __name__ == '__main__':
     # print(*sys.argv[1:-1])
     if len(sys.argv) > 1:
         # Über die Website
-        path = f'{'/'.join(os.path.abspath(__file__).split('\\')[:-2])}/{sys.argv[-1]}/erstellt/'
+        path = f'{'/'.join(os.path.abspath(__file__).split('\\')[:-2])}/{sys.argv[-1]}/kontrollen/erstellt/'
         erstellen(*sys.argv[1:-1])
     else:
         # Über das Ausführen der Datei
@@ -494,4 +494,3 @@ if __name__ == '__main__':
         # erstellt werden sollen
         # Standard: In einem Ordner ("erstellt") im Unterordner wo die Python-Datei drinnen ist
         erstellen(klasse=11, kurs='Leistungskurs', lehrer='Herr Herrys')
-    print(path)

@@ -6,6 +6,7 @@ class Test(models.Model):
     name = models.CharField(max_length=300, default='')
     fach = models.CharField(max_length=100, default='Mathematik')
     jahrgang = models.IntegerField()
+    aufgaben = models.JSONField(default=list)
 
     def __str__(self):
         return self.name
