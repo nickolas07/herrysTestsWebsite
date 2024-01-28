@@ -1,0 +1,89 @@
+<!doctype html>
+{% load static %}
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Herrys' Tests{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Herrys' Tests</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Erstellen
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/lehrer/">Lehrer</a></li>
+                <li><a class="dropdown-item" href="/schüler/">Schüler</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" hidden="hidden">
+                Jahrgang
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/jg12/">Klasse 10</a></li>
+                <li><a class="dropdown-item" href="/jg12/">Klasse 12</a></li>
+                <li><a class="dropdown-item" href="/jg13/">Klasse 13</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Über
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item disabled" href="/über/">Über das Projekt</a></li>
+                <li><a class="dropdown-item disabled" href="/datenschutzerklärung/">Datenschutzerklärung</a></li>
+                <li><a class="dropdown-item disabled" href="/impressum/">Impressum</a></li>
+              </ul>
+        </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="modal fade" id="constructionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #FF0000; font-size: 125%;">In der Bauphase</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" style="font-size: 110%;">
+            <strong>Diese Website befindet sich noch im Bau!</strong><br>Nicht alle Funktionen sind verfügbar oder funktionieren so, wie sie sollten.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Trotzdem Fortfahren</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        if(window.location.pathname === '/'){
+          $('#constructionModal').modal('show');
+        }
+      });
+    </script>
+
+
+    <div class="content" style="padding-top: 1%" >
+      {% block content %}
+      {% endblock %}
+    </div>
+  </body>
+</html>

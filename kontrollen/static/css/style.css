@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600&display=swap');
+
+* {
+    font-family: 'Rubik', sans-serif;
+}
+
+.indiv {
+    display: grid;
+    grid-template: 4rem 3rem 1fr / repeat(2, 1fr);
+    margin: 2rem;
+    align-items: center;
+}
+
+.indiv h1 {
+    text-align: center;
+    font-weight: 600;
+    grid-area: 1 / 1 / span 1 / span 2;
+    margin: 0;
+}
+
+.indiv h3 {
+    grid-area: 2 / 1 / span 1 / span 2;
+    margin-bottom: 0;
+}
+
+.indiv h5 {
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.indiv .list-group {
+    grid-area: 3 / 1 / span 1 / span 2;
+    box-shadow: 5px 5px 10px black;
+}
+
+.indiv .aufgaben {
+    list-style: none;
+    margin-bottom: 3px;
+    padding-left: 1rem;
+}
+
+.kontrolle {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 10% 5% repeat(2, 2fr);
+    border: 2px solid gray;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: -5px 5px 5px rgb(45, 45, 45);
+    width: 60rem;
+    height: 45rem;
+    margin: 0 auto;
+}
+
+.kontrolle h1 {
+    align-self: center;
+    justify-self: center;
+    grid-column: 1 / span 3;
+    grid-row: 1 / 1;
+}
+
+.kontrolle h4 {
+    align-self: center;
+    justify-self: center;
+    grid-column: 1 / span 3;
+    grid-row: 2 / 2;
+}
+
+.kontrolle .vorschau {
+    grid-column: 1 / span 2;
+    grid-row: 2 / span 2;
+    width: 100%;
+    height: 100%;
+}
+
+.kontrolle .aufgaben {
+    display: flex;
+    grid-column: 1 / span 3;
+    grid-row: 3 / span 2;
+    align-items: start;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.kontrolle .aufgaben ul {
+    list-style: none;
+}
+
+.kontrolle .aufgabe {
+    margin: 5px 10px;
+}
+
+.kontrolle .form-check {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: 2% 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    width: 100%;
+    padding-left: 5px;
+}
+
+.kontrolle .form-check-input {
+    margin: 0 !important;
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+}
